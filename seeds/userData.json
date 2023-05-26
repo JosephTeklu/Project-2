@@ -1,0 +1,22 @@
+[
+  {
+    "user_name": "JamesS",
+    "email": "jamess@gamil.com",
+    "password": "psswd1234"
+  },
+  {
+    "user_name": "EvelynC",
+    "email": "evelync@gamil.com",
+    "password": "psswd1234"
+  },
+  {
+    "user_name": "JossiT",
+    "email": "jossit@gamil.com",
+    "password": "psswd1234"
+  },
+  {
+    "user_name": "DannyO",
+    "email": "dannyo@gamil.com",
+    "password": "psswd1234"
+  }
+]
