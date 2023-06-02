@@ -1,5 +1,5 @@
 const loginFormHandler = async (event) => {
-    // Stop the browser from submitting the form so we can do so with JavaScript
+    // Stop the browser from submitting the form, with use of JavaScript
     event.preventDefault();
   
     // Gather the data from the form elements on the page
