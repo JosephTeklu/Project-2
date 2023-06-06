@@ -49,7 +49,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    userUrl = "https://bing.com";
+    userUrl = req.body.body
     const options = {
       method: "POST",
       headers: {
@@ -58,7 +58,7 @@ router.post("/", async (req, res) => {
         "X-RapidAPI-Host": process.env.APIHOST,
       },
       body: new URLSearchParams({
-        url: req.body,
+        url: userUrl
       }),
     };
     const newUrl = await fetch(url, options);
