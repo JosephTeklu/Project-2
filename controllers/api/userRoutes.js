@@ -2,23 +2,6 @@ const router = require("express").Router();
 const { User } = require("../../models");
 // api/user
 
-// get user by id
-router.get("/:id", async (req, res) => {
-  try {
-    // grab the user by id
-    const atId = await User.findByPk(req.params.id);
-    // if there is no user at the given id send error with code
-    if (!atId) {
-      res.status(500).json({ message: "No user at id." });
-    }
-
-    // send the user along with code
-    res.status(200).json(atId);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
 // add in a new user
 router.post("/", async (req, res) => {
   try {
@@ -31,6 +14,23 @@ router.post("/", async (req, res) => {
       req.session.logged_in = true;
       res.status(200).json(newUser);
     });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// get user by id
+router.get("/:id", async (req, res) => {
+  try {
+    // grab the user by id
+    const atId = await User.findByPk(req.params.id);
+    // if there is no user at the given id send error with code
+    if (!atId) {
+      res.status(500).json({ message: "No user at id." });
+    }
+
+    // send the user along with code
+    res.status(200).json(atId);
   } catch (error) {
     res.status(500).json(error);
   }

@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { json } = require("express");
 const { Url } = require("../../models");
 
 const withAuth = require("../../utils/auth");
@@ -19,7 +20,8 @@ const options = {
 //add new url
 router.get("/", async (req, res) => {
   try {
-    userUrl = "https://facebook.com";
+    let userUrl = req.body.body;
+    console.log(`URL: ${userUrl}`);
     const options = {
       method: "POST",
       headers: {
@@ -32,12 +34,13 @@ router.get("/", async (req, res) => {
       }),
     };
     const newUrl = await fetch(url, options);
+    // console.log(newUrl.)
     const result = await newUrl.text(req.body);
     //save url
     req.session.save(() => {
       req.session.url_id = newUrl.id;
-      res.status(200).json(result);
-      console.log(result);
+      res.status(200).json(newUrl);
+      console.log(`short url: ${this.toString(result.body.result_url)}`);
     });
   } catch (error) {
     res.status(500).json(error);
