@@ -15,11 +15,9 @@ router.post("/", async (req, res) => {
       res.status(200).json(newUser);
     });
   } catch (error) {
-  console.log(error)
+    console.log(error);
     res.status(500).json(error);
-  
   }
-  
 });
 
 // get user by id
@@ -45,6 +43,7 @@ router.post("/login", async (req, res) => {
     // find the user whose email matches the one from the request
     const userData = await User.findOne({ where: { email: req.body.email } });
     // if the email does not exist send error message and return
+    console.log(userData);
     if (!userData) {
       res
         .status(400)
@@ -54,6 +53,7 @@ router.post("/login", async (req, res) => {
 
     // if the given email checks out, not check the password for validation
     const validPassword = await userData.checkPassword(req.body.password);
+    console.log(validPassword);
     // if the password is falsy send error message and return
     if (!validPassword) {
       res
@@ -69,7 +69,8 @@ router.post("/login", async (req, res) => {
       res.json({ user: userData, message: "You are now logged in!" });
     });
   } catch (error) {
-    res.status(400).json(error);
+    console.log(error);
+    res.status(500).json(error);
   }
 });
 

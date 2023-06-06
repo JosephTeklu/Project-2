@@ -5,23 +5,54 @@ const { Url } = require("../../models");
 const withAuth = require("../../utils/auth");
 const url = "https://url-shortener-service.p.rapidapi.com/shorten";
 
-const options = {
-  method: "POST",
-  headers: {
-    "content-type": "application/x-www-form-urlencoded",
-    "X-RapidAPI-Key": process.env.APIKEY,
-    "X-RapidAPI-Host": process.env.APIHOST,
-  },
-  body: new URLSearchParams({
-    url: "https://google.com",
-  }),
-};
+// const options = {
+//   method: "POST",
+//   headers: {
+//     "content-type": "application/x-www-form-urlencoded",
+//     "X-RapidAPI-Key": process.env.APIKEY,
+//     "X-RapidAPI-Host": process.env.APIHOST,
+//   },
+//   body: new URLSearchParams({
+//     url: "https://google.com",
+//   }),
+// };
 
 //add new url
-router.get("/", async (req, res) => {
+// router.get("/", async (req, res) => {
+//   try {
+//     let userUrl = req.url;
+//     console.log(req);
+//     console.log(`LONG URL: ${userUrl}`);
+//     console.log(`URL: ${userUrl}`);
+//     const options = {
+//       method: "POST",
+//       headers: {
+//         "content-type": "application/x-www-form-urlencoded",
+//         "X-RapidAPI-Key": process.env.APIKEY,
+//         "X-RapidAPI-Host": process.env.APIHOST,
+//       },
+//       body: new URLSearchParams({
+//         url: userUrl,
+//       }),
+//     };
+//     const newUrl = await fetch(url, options);
+//     console.log(`SHORT URL: ${newUrl}`);
+//     const result = await newUrl.text(req.body);
+//     //save url
+//     req.session.save(() => {
+//       req.session.url_id = newUrl.id;
+//       res.status(200).json(newUrl);
+//       console.log(`short url: ${this.toString(result.body.result_url)}`);
+//     });
+//   } catch (error) {
+//     res.status(500).json(error);
+//   }
+// });
+
+router.post("/", async (req, res) => {
   try {
-    let userUrl = req.body.body;
-    console.log(`URL: ${userUrl}`);
+    let userUrl = req.body.url;
+    console.log(`LONG URL: ${userUrl}`);
     const options = {
       method: "POST",
       headers: {
@@ -34,40 +65,14 @@ router.get("/", async (req, res) => {
       }),
     };
     const newUrl = await fetch(url, options);
-    // console.log(newUrl.)
     const result = await newUrl.text(req.body);
-    //save url
-    req.session.save(() => {
-      req.session.url_id = newUrl.id;
-      res.status(200).json(newUrl);
-      console.log(`short url: ${this.toString(result.body.result_url)}`);
-    });
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
 
-router.post("/", async (req, res) => {
-  try {
-    userUrl = req.body.body
-    const options = {
-      method: "POST",
-      headers: {
-        "content-type": "application/x-www-form-urlencoded",
-        "X-RapidAPI-Key": process.env.APIKEY,
-        "X-RapidAPI-Host": process.env.APIHOST,
-      },
-      body: new URLSearchParams({
-        url: userUrl
-      }),
-    };
-    const newUrl = await fetch(url, options);
-    const result = await newUrl.text(req.body);
+    console.log(typeof result);
+    let data = JSON.parse(result);
 
     req.session.save(() => {
       req.session.url_id = newUrl.id;
-      res.status(200).json(result);
-      console.log(result);
+      res.status(200).json(data);
     });
   } catch (error) {
     res.status(500).json(error);

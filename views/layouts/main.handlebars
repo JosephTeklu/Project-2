@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Registry</title>
+    <title>Url Shortner</title>
     <link rel="stylesheet" href="/css/jass.css" />
     <script
       src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -21,12 +21,18 @@
   <body>
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
-        User Registry
+        Url Shortner
       </h1>
       <!-- Only display the logout button if the user is logged in -->
       {{#if logged_in}}
         <nav>
           <button class="btn" id="logout">logout</button>
+        </nav>
+      {{else}}
+        <nav>
+          <button class="btn" id="login"><a href="/login">Login</a></button>
+          <button class="btn" id="signup"><a href="/signup">Signup</a></button>
+          <button class="btn" id="myLinks"><a href="/myLinks">My Links</a></button>
         </nav>
       {{/if}}
     </header>
