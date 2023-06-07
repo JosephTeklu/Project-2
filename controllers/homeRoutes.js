@@ -58,7 +58,7 @@ try {
 
 router.get('/homepage', withAuth, async (req,res) => {
   try{
-    constuserData = await User.findbyPk(req.session.user_id, {
+    const userData = await User.findbyPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
       include: [{model: Url}],
     });
@@ -85,10 +85,6 @@ router.get('/login', (req,res) => {
 
 router.get('/signup', (req, res) => {
   res.render('signup')
-});
-
-router.get('/mylinks', (req, res) => {
-  res.render('mylinks')
 });
 
 module.exports = router;
