@@ -11,8 +11,11 @@
 
 <div class="row mt-4">
   <div class="col-md-6">
+    {{#if logged_in}}
     <h3>Shorten your Url</h3>
-
+    {{else}}
+    <h3>Please sign in to Url Shortner</h3>
+    {{/if}}
     <form class="form new-url-form">
       <div class="form-group">
         <label for="url">url</label>

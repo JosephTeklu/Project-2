@@ -56,6 +56,7 @@ $(".shorten-button").click(async function (event) {
       let data = await res.json();
       console.log(data.result_url);
 
+      // send to webpage the shortned url
       document.getElementById("shortUrl").textContent = data.result_url;
     }
   } else {
