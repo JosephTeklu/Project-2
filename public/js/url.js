@@ -54,8 +54,9 @@ $(".shorten-button").click(async function (event) {
     if (res.ok) {
       console.log(res);
       let data = await res.json();
-      console.log(data);
-      //   document.location.replace("/nameofhandlebars");
+      console.log(data.result_url);
+
+      document.getElementById("shortUrl").textContent = data.result_url;
     }
   } else {
     alert("Enter a valid url!");
