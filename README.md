@@ -21,7 +21,7 @@ You can clone the repository to your local machine. Head over to the direcoty of
 
 ## Usage
 
-Give the program a long url in the text box. Click on the shorten button and you will be given a shortned link to your long url.
+Head over to the deployed Heroku page at (https://goolnk.com/9z4Q7d). Give the program a long url in the text box. Click on the shorten button and you will be given a shortned link to your long url.
 
 ## Contributing
 
